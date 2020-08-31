@@ -1,4 +1,4 @@
-import cards
+import magicschoolgame.cards
 
 def initialize(config):
     pass
