@@ -14,7 +14,7 @@ turn order: [alice, bob]
 ''')
 
 TRANSITIONS = yaml.safe_load('''
-- [play card, 0]
+- [play card, 1]
 - [play card, 2]
 ''')
 
@@ -26,10 +26,7 @@ players:
         influence: 2
         attacks: 0
         deck: [chameleon skin, hairy's broom, unlock, unlock, unlock]
-        hand:
-            1: unlock
-            3: hary's owl
-            4: unlock
+        hand: [hary's owl, unlock, unlock]
         played cards: [unlock, unlock]
         discard: []
     bob:
@@ -38,12 +35,9 @@ players:
         influence: 0
         attacks: 0
         deck: [mystery beans, unlock, unlock, unlock, weasel's broom]
-        hand:
-            1: unlock
-            2: weasel's owl
-            3: unlock
-            4: unlock
-            5: unlock
+        hand: [unlock,  unlock, unlock, unlock, weasel's owl]
+        played cards: []
+        discard: []
 
 turn order: [alice, bob]
 current player: alice
