@@ -1,3 +1,5 @@
+import cards
+
 def initialize(config):
     pass
 
