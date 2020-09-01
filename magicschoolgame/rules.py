@@ -2,7 +2,7 @@ import magicschoolgame.cards
 
 class Player:
 
-    int nPlayers = 0
+    nPlayers = 0
 
     def __init__ (self):
         self.n = nPlayers + 1
