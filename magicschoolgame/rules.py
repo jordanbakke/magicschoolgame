@@ -1,4 +1,4 @@
-import cards
+import magicschoolgame.cards
 
 class Player:
 
