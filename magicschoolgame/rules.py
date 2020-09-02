@@ -32,7 +32,7 @@ def initialize(config):
     players = [Player1, Player2, Player3, Player4]
     Deck = []
     Hand = []
-    game_state = {"players" : {}, "turn order" : CONFIG["turn order"], "current player" : CONFIG["turn order"][0], "phase" : [["hero actions"]]}
+    game_state = {"players" : {}, "turn order" : config["turn order"], "current player" : config["turn order"][0], "phase" : [["hero actions"]]}
 
     for i in config["players"]:
         Deck = magicschoolgame.cards.HERO_TO_STARTER_DECK[config[i]["hero"]]
