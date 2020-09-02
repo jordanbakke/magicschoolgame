@@ -35,12 +35,12 @@ def initialize(config):
     game_state = {"players" : {}, "turn order" : config["turn order"], "current player" : config["turn order"][0], "phase" : [["hero actions"]]}
 
     for i in config["players"]:
-        Deck = magicschoolgame.cards.HERO_TO_STARTER_DECK[config[i]["hero"]]
+        Deck = magicschoolgame.cards.HERO_TO_STARTER_DECK[config[players][i]["hero"]]
 
-        Hand = [Deck[h] for h in range(len(Deck)) if h in config[i]["hand"]]
-        Deck = [Deck[h] for h in range(len(Deck)) if h not in config[i]["hand"]]
+        Hand = [Deck[h] for h in range(len(Deck)) if h in config[players][i]["hand"]]
+        Deck = [Deck[h] for h in range(len(Deck)) if h not in config[players][i]["hand"]]
 
-        players[j] = Player(i, config[i]["hero"], 10, 0, 0, Deck, Hand, [], [])
+        players[j] = Player(i, config[players][i]["hero"], 10, 0, 0, Deck, Hand, [], [])
         j += 1
 
     for i in players:
