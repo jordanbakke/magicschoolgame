@@ -6,9 +6,9 @@ class Player:
     player_list = []
 
     def __init__ (self, IRL_Name, Hero_Name, Health, Influence, Attack, Deck, Hand, Played, Discard):
-        self.n = nPlayers + 1
-        nPlayers += 1
-        player_list += [self]
+        self.n = Player.nPlayers + 1
+        Player.nPlayers += 1
+        Player.player_list += [self]
 
         self.attack = Attack
         self.influence = Influence
@@ -24,7 +24,7 @@ def initialize(config):
     '''
     So far, this function is only able to deal with the kind of configuration represented in test_unlock
     '''
-    j = 1
+    j = 0
     Player1 = None
     Player2 = None
     Player3 = None
@@ -32,10 +32,31 @@ def initialize(config):
     players = [Player1, Player2, Player3, Player4]
     Deck = []
     Hand = []
+    game_state = {"players" : {}, "turn order" : CONFIG["turn order"], "current player" : CONFIG["turn order"][0], "phase" : [["hero actions"]]}
 
     for i in config["players"]:
-        players[j] = Player(i, config[i]["hero"], 10, 0, 0, [], [], [], [])
+        Deck = magicschoolgame.cards.HERO_TO_STARTER_DECK[config[i]["hero"]]
+
+        for h in config[i]["hand"]:
+            Hand += [Deck.pop(config[i]["hand"][h])]
+
+        players[j] = Player(i, config[i]["hero"], 10, 0, 0, Deck, Hand, [], [])
         j += 1
+
+    for i in players:
+        if i:
+            game_state["players"][i.name] = {
+                "hero" : i.hero_name,
+                "hearts" : i.health,
+                "influence" : i.influence,
+                "attacks" : i.attack,
+                "deck" : i.deck,
+                "hand" : i.hand,
+                "played cards" : i.played,
+                "discard" : i.discard
+            }
+
+    return game_state
 
 def do_transition(old_state, transition):
     game_state = {}
