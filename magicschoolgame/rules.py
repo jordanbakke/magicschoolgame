@@ -37,8 +37,8 @@ def initialize(config):
     for i in config["players"]:
         Deck = magicschoolgame.cards.HERO_TO_STARTER_DECK[config[i]["hero"]]
 
-        for h in config[i]["hand"]:
-            Hand += [Deck.pop(config[i]["hand"][h])]
+        Hand = [Deck[h] for h in range(len(Deck)) if h in config[i]["hand"]]
+        Deck = [Deck[h] for h in range(len(Deck)) if h not in config[i]["hand"]]
 
         players[j] = Player(i, config[i]["hero"], 10, 0, 0, Deck, Hand, [], [])
         j += 1
