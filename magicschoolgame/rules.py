@@ -1,11 +1,12 @@
 import magicschoolgame.cards
+import random
 
 class Player:
 
     nPlayers = 0
     player_list = []
 
-    def __init__ (self, IRL_Name, Hero_Name, Health, Influence, Attack, Deck, Hand, Played, Discard):
+    def __init__ (self, IRL_Name = "", Hero_Name = "", Health = -1, Influence = -1, Attack = -1, Deck = [], Hand = [], Played = [], Discard = []):
         self.n = Player.nPlayers + 1
         Player.nPlayers += 1
         Player.player_list += [self]
@@ -19,6 +20,29 @@ class Player:
         self.hand = Hand
         self.played = Played
         self.discard = Discard
+
+    def init_from_state (self, player_state):
+        '''
+        takes player state in terms of part of a game state as input and assigns all class members accordingly
+        '''
+        self.attack = player_state["attacks"]
+        self.influence = player_state["influence"]
+        self.health = player_state["hearts"]
+        self.hero_name = player_state["hero"]
+        self.deck = player_state["deck"]
+        self.hand = player_state["hand"]
+        self.played = player_state["played cards"]
+        self.discard = player_state["discard"]
+
+        return self
+
+    def quickTest(self):
+        pass
+
+    def drawCards(self, n = 1):
+
+        for i in range(0, n):
+            self.hand += [self.deck.pop(random.randint(0, len(self.deck)-1))]
 
 def initialize(config):
     '''
@@ -59,4 +83,41 @@ def initialize(config):
     return game_state
 
 def do_transition(old_state, transition):
-    game_state = {}
+    '''
+    So far, this function is only able to deal with the kind of configuration represented in test_unlock
+    '''
+    #this section initializes all of the objects
+
+    new_state = old_state
+    
+    players = {k: Player(k).init_from_state(v) for k, v in old_state["players"].items()}
+    current_player = players[old_state["current player"]]
+
+    #now for the transitions
+
+    if type(transition) is not list:
+        raise Exception("transition is not in proper format") 
+
+    if transition[0] == "play card":
+        card = magicschoolgame.cards.CARD_OBJECTS[current_player.hand[transition[1]]]
+        card.play(current_player)
+        current_player.played += [current_player.hand.pop(transition[1])]
+
+        current_player.deck.sort()
+        current_player.hand.sort()
+        current_player.played.sort()
+        current_player.discard.sort()
+
+    for k, v in players.items():
+        new_state["players"][k] = {
+            "hero" : v.hero_name,
+            "hearts" : v.health,
+            "influence" : v.influence,
+            "attacks" : v.attack,
+            "deck" : v.deck,
+            "hand" : v.hand,
+            "played cards" : v.played,
+            "discard" : v.discard
+        }
+
+    return new_state

@@ -26,7 +26,7 @@ players:
         influence: 2
         attacks: 0
         deck: [chameleon skin, hairy's broom, unlock, unlock, unlock]
-        hand: [hary's owl, unlock, unlock]
+        hand: [hairy's owl, unlock, unlock]
         played cards: [unlock, unlock]
         discard: []
     bob:
