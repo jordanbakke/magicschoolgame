@@ -17,12 +17,10 @@ class HogwartsCard:
         conditionsMet = [False, False]
 
         if self.condition1 is None:
-            conditionsMet[0] = True
+            conditionsMet[0] = (self.effect1 is not None)
 
         if self.condition2 is None:
-            conditionsMet[1] = True
-
-        print(conditionsMet)
+            conditionsMet[1] = (self.effect2 is not None)
 
         return conditionsMet
 
@@ -34,11 +32,17 @@ class HogwartsCard:
         except AttributeError:
             raise Exception("Not a valid player state")
 
+        if self.special == "choice":
+            for i in self.effect1:
+                if i[0] == tag:
+                    self.effect1 = [i]
+                    break
+
         conditionsMet = self.evalConditions()
 
-        for i in self.effect1:
-            if conditionsMet[0]:
-
+        if conditionsMet[0]:
+            for i in self.effect1:
+            
                 if i[0] == "influence":
                     player.influence += i[1]
 
@@ -50,6 +54,22 @@ class HogwartsCard:
 
                 elif i[0] == "card":
                     player.drawCards(i[1])
+
+        if conditionsMet[1]:
+            for i in self.effect2:
+                if i[0] == "influence":
+                    player.influence += i[1]
+
+                elif i[0] == "attack":
+                    player.attack += i[1]
+
+                elif i[0] == "health":
+                    player.health += i[1]
+
+                elif i[0] == "card":
+                    player.drawCards(i[1])
+
+        return None #to indicate no other changes need to be made
 
 SUPPLY_DECK = (
         ['big balls'] * 4 +
@@ -97,9 +117,9 @@ HERO_TO_STARTER_DECK = {
 
 CARD_OBJECTS = {
     #"bardic lore" : #item; {+2 influence} or {+1 influence (all heroes)}
-    #"big balls" : #item; +1 attack; +1 heart
+    "big balls" : HogwartsCard("item", [["attack", 1], ["health", 1]]), #item; +1 attack; +1 heart
     #"chameleon skin" : #item; +1 influence; can't lose >1 heart per evildoing or evildoer
-    #"elusive ball" : #item; +2 influence; +1 card
+    "elusive ball" : HogwartsCard("item", [["influence", 2], ["card", 1]]), #item; +2 influence; +1 card
     #"groundskeeper" : #ally; +1 attack; +1 heart (all heroes)
     #"hairy's broom" : #item; +1 attack; {defeat evildoer} triggers {+1 influence}
     #"hairy's owl" : #ally; +1 attack or +2 heart
@@ -117,7 +137,7 @@ CARD_OBJECTS = {
     #"screaming root" : #item; +1 attack or {+2 heart (any 1 hero)}
     #"team captain" : #ally; +1 attack; {defeat evildoer} triggers {+2 heart (any 1 hero)}
     #"time machine" : #item; +1 influence; when buying spell, may place on top of deck
-    "unlock" : HogwartsCard("spell", [["influence", 1]])#spell; +1 influence
+    "unlock" : HogwartsCard("spell", [["influence", 1]]) #spell; +1 influence
     #"weasel's broom" : #item; +1 attack; {defeat evildoer} triggers {+1 influence}
     #"weasel's owl" : #ally; +1 attack or +2 heart
 }
