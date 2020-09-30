@@ -108,6 +108,12 @@ def do_transition(old_state, transition):
         current_player.played.sort()
         current_player.discard.sort()
 
+    elif transition[0] == "purchase":
+        current_player.discard += [old_state["shop"].pop(transition[1])]
+
+        #This line will be replaced with a line that finds the cost of the card, but as of now that is not stored anywhere
+        current_player.influence -= 3
+
     for k, v in players.items():
         new_state["players"][k] = {
             "hero" : v.hero_name,
@@ -119,5 +125,7 @@ def do_transition(old_state, transition):
             "played cards" : v.played,
             "discard" : v.discard
         }
+    
+    new_state["shop"] = old_state["shop"]
 
     return new_state
