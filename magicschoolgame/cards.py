@@ -126,8 +126,8 @@ CARD_OBJECTS = {
     #"headmaster" : #ally; {+1 attack; +1 influence; +1 heart; +1 card} (all heroes)
     #"healing herb" : #item; +2 heart (any 1 hero)
     #"illuminate" : #spell; +1 card (all heroes)
-    #"lower" : #spell; +2 attack
-    #"make fire" : #spell; +1 attack; +1 card
+    "lower" : HogwartsCard("spell", [["attack", 2]]), #spell; +2 attack
+    "make fire" : HogwartsCard("spell", [["attack", 1], ["card", 1]]), #spell; +1 attack; +1 card
     #"mystery beans" : #item; +1 influence; {play own ally} triggers {+1 attack}
     #"nerd's cat" : #ally; +1 attack or +2 heart
     #"personality test" : #item; +2 influence; when buying ally, may place on top of deck
