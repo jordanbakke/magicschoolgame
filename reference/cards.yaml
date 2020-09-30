@@ -1,23 +1,24 @@
 bardic lore: item; {+2 influence} or {+1 influence (all heroes)}
-big balls: item; +1 attack; +1 heart
+big balls: item; costs 3 influence; +1 attack; +1 heart
 chameleon skin: item; +1 influence; can't lose >1 heart per evildoing or evildoer
-elusive ball: item; +2 influence; +1 card
-groundskeeper: ally; +1 attack; +1 heart (all heroes)
+elusive ball: item; costs 5 influence; +2 influence; +1 card
+groundskeeper: ally; costs 4 influence; +1 attack; +1 heart (all heroes)
 hairy's broom: item; +1 attack; {defeat evildoer} triggers {+1 influence}
 hairy's owl: ally; +1 attack or +2 heart
-headmaster: ally; {+1 attack; +1 influence; +1 heart; +1 card} (all heroes)
-healing herb: item; +2 heart (any 1 hero)
-illuminate: spell; +1 card (all heroes)
-lower: spell; +2 attack
-make fire: spell; +1 attack; +1 card
+headmaster: ally; costs 8 influence; {+1 attack; +1 influence; +1 heart; +1 card} (all heroes)
+healing herb: item; costs 2 influence; +2 heart (any 1 hero)
+illuminate: spell; costs 4 influence; +1 card (all heroes)
+levitate: spell; costs 2 influence; +1 influence; when buying item, may place on top of deck
+lower: spell; costs 5 influence; +2 attack
+make fire: spell; costs 4 influence; +1 attack; +1 card
 mystery beans: item; +1 influence; {play own ally} triggers {+1 attack}
 nerd's cat: ally; +1 attack or +2 heart
-personality test: item; +2 influence; when buying ally, may place on top of deck
+personality test: item; costs 4 influence; +2 influence; when buying ally, may place on top of deck
 pet frog: ally; +1 attack or +2 heart
 reminder: item; +1 influence; {discard this} triggers {+2 influence}
-repair: spell; +2 influence or +1 card
+repair: spell; costs 3 influence; +2 influence or +1 card
 screaming root: item; +1 attack or {+2 heart (any 1 hero)}
-team captain: ally; +1 attack; {defeat evildoer} triggers {+2 heart (any 1 hero)}
+team captain: ally; costs 3 influence; +1 attack; {defeat evildoer} triggers {+2 heart (any 1 hero)}
 time machine: item; +1 influence; when buying spell, may place on top of deck
 unlock: spell; +1 influence
 weasel's broom: item; +1 attack; {defeat evildoer} triggers {+1 influence}
