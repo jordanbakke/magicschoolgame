@@ -109,10 +109,15 @@ def do_transition(old_state, transition):
         current_player.discard.sort()
 
     elif transition[0] == "purchase":
+        card = magicschoolgame.cards.CARD_OBJECTS[old_state["shop"][transition[1]]]
+
+        if current_player.influence < card.cost:
+            raise Exception("Current Player is make")
+
         current_player.discard += [old_state["shop"].pop(transition[1])]
 
         #This line will be replaced with a line that finds the cost of the card, but as of now that is not stored anywhere
-        current_player.influence -= 3
+        current_player.influence -= card.cost
 
     for k, v in players.items():
         new_state["players"][k] = {
