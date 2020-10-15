@@ -37,4 +37,4 @@ def test_purchase_illegal():
     state = INITIAL_STATE
     for transition in TRANSITIONS:
         transition = magicschoolgame.rules.do_transition(state, transition)
-    assert isinstance(state, magicschoolgame.rules.Illegal)
+    assert isinstance(transition, magicschoolgame.rules.Illegal)

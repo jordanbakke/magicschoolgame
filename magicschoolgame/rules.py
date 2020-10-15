@@ -1,6 +1,10 @@
 import magicschoolgame.cards
 import random
 
+class Illegal:
+    def __init__(self, Message):
+        self.message = Message
+
 class Player:
 
     nPlayers = 0
@@ -112,11 +116,10 @@ def do_transition(old_state, transition):
         card = magicschoolgame.cards.CARD_OBJECTS[old_state["shop"][transition[1]]]
 
         if current_player.influence < card.cost:
-            raise Exception("Current Player is make")
+            return Illegal("Player made an illegal purchase")
 
         current_player.discard += [old_state["shop"].pop(transition[1])]
 
-        #This line will be replaced with a line that finds the cost of the card, but as of now that is not stored anywhere
         current_player.influence -= card.cost
 
     for k, v in players.items():
