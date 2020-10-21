@@ -1,0 +1,10 @@
+dragon boy:
+    effect: each time skull added to location, active hero loses 2 hearts
+    reward: remove 1 skull from location
+dragon's cronies:
+    effect: each time evildoer or evildoing causes hero to discard card,
+            that hero loses 1 heart
+    reward: every hero draws card
+two-face:
+    effect: active hero loses 1 heart
+    reward: every hero gains 1 influence and 1 heart
