@@ -60,5 +60,5 @@ phase: [[hero actions]]
 def test_big_balls():
     state = INITIAL_STATE
     for transition in TRANSITIONS:
-        transition = magicschoolgame.rules.do_transition(state, transition)
+        state = magicschoolgame.rules.do_transition(state, transition)
     assert state == FINAL_STATE

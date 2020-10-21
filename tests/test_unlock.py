@@ -47,5 +47,5 @@ phase: [[hero actions]]
 def test_unlock():
     state = magicschoolgame.rules.initialize(CONFIG)
     for transition in TRANSITIONS:
-        transition = magicschoolgame.rules.do_transition(state, transition)
+        state = magicschoolgame.rules.do_transition(state, transition)
     assert state == FINAL_STATE
