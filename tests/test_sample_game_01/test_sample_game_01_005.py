@@ -47,7 +47,7 @@ supply: [ big balls, big balls, big balls, elusive ball, groundskeeper,
 
 turn order: [jordan, hudson]
 current player: jordan
-phase: [hero actions]
+phase: [[hero actions]]
 
 ''')
 
