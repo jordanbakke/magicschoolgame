@@ -1,4 +1,4 @@
-class HogwartsCard:
+class PlayerCard:
     
     def __init__ (self, Cost, Type = None, Effect1 = None, Effect2 = None, Condition1 = None, Condition2 = None, inHandEffect = None, Special = None):
         self.cost = Cost #0 is for hero cards
@@ -118,17 +118,17 @@ HERO_TO_STARTER_DECK = {
 
 CARD_OBJECTS = {
     #"bardic lore" : #item; {+2 influence} or {+1 influence (all heroes)}
-    "big balls" : HogwartsCard(3, "item", [["attack", 1], ["health", 1]]), #item; +1 attack; +1 heart
+    "big balls" : PlayerCard(3, "item", [["attack", 1], ["health", 1]]), #item; +1 attack; +1 heart
     #"chameleon skin" : #item; +1 influence; can't lose >1 heart per evildoing or evildoer
-    "elusive ball" : HogwartsCard(5, "item", [["influence", 2], ["card", 1]]), #item; +2 influence; +1 card
+    "elusive ball" : PlayerCard(5, "item", [["influence", 2], ["card", 1]]), #item; +2 influence; +1 card
     #"groundskeeper" : #ally; +1 attack; +1 heart (all heroes)
     #"hairy's broom" : #item; +1 attack; {defeat evildoer} triggers {+1 influence}
     #"hairy's owl" : #ally; +1 attack or +2 heart
     #"headmaster" : #ally; {+1 attack; +1 influence; +1 heart; +1 card} (all heroes)
     #"healing herb" : #item; +2 heart (any 1 hero)
     #"illuminate" : #spell; +1 card (all heroes)
-    "lower" : HogwartsCard(5, "spell", [["attack", 2]]), #spell; +2 attack
-    "make fire" : HogwartsCard(4, "spell", [["attack", 1], ["card", 1]]), #spell; +1 attack; +1 card
+    "lower" : PlayerCard(5, "spell", [["attack", 2]]), #spell; +2 attack
+    "make fire" : PlayerCard(4, "spell", [["attack", 1], ["card", 1]]), #spell; +1 attack; +1 card
     #"mystery beans" : #item; +1 influence; {play own ally} triggers {+1 attack}
     #"nerd's cat" : #ally; +1 attack or +2 heart
     #"personality test" : #item; +2 influence; when buying ally, may place on top of deck
@@ -138,7 +138,7 @@ CARD_OBJECTS = {
     #"screaming root" : #item; +1 attack or {+2 heart (any 1 hero)}
     #"team captain" : #ally; +1 attack; {defeat evildoer} triggers {+2 heart (any 1 hero)}
     #"time machine" : #item; +1 influence; when buying spell, may place on top of deck
-    "unlock" : HogwartsCard(0, "spell", [["influence", 1]]) #spell; +1 influence
+    "unlock" : PlayerCard(0, "spell", [["influence", 1]]) #spell; +1 influence
     #"weasel's broom" : #item; +1 attack; {defeat evildoer} triggers {+1 influence}
     #"weasel's owl" : #ally; +1 attack or +2 heart
 }
