@@ -104,7 +104,12 @@ def do_transition(old_state, transition):
 
     if transition[0] == "play card":
         card = magicschoolgame.cards.CARD_OBJECTS[current_player.hand[transition[1]]]
-        card.play(current_player)
+        tag = None
+        if card.special == "choice":
+            if transition[2] == "heart":
+                tag = "health"
+
+        card.play(current_player, tag)
         current_player.played += [current_player.hand.pop(transition[1])]
 
         current_player.deck.sort()
@@ -122,6 +127,23 @@ def do_transition(old_state, transition):
 
         current_player.influence -= card.cost
 
+    elif transition[0] == "reveal evildoer":
+        new_state["evildoers active"] += [new_state["evildoers reserve"].pop(transition[1])]
+        new_state["phase"].pop(0)
+
+    elif transition[0] == "reveal evildoing":
+        new_state["evildoings active"] += [new_state["evildoings reserve"].pop(transition[1])]
+
+        other_players = []
+        for i in players:
+            if i != current_player:
+                other_players += [i]
+
+        evildoing = magicschoolgame.cards.EVILDOING_OBJECTS[new_state["evildoings active"][-1]]
+        evildoing.reveal(current_player, other_players)
+
+        new_state["phase"] = [["hero actions"]]
+
     for k, v in players.items():
         new_state["players"][k] = {
             "hero" : v.hero_name,
@@ -135,5 +157,6 @@ def do_transition(old_state, transition):
         }
     
     new_state["shop"] = old_state["shop"]
+    #new_state["players"]["jordan"]["hearts"] = 8
 
     return new_state
